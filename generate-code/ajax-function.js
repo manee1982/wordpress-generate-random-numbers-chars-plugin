@@ -5,7 +5,7 @@ jQuery(document).ready(function(){
 		type : 'post',
 		data : {
 		    action : 'generate_layfotk_code',
-			product_id : product_id
+			var_to_send : var_to_send
 		},
 		success : function( response ) {
 			jQuery('#feeback').html( response );
