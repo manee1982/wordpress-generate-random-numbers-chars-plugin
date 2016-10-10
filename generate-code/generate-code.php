@@ -17,26 +17,31 @@ function wp_generate_random_code(){
 
 	global $wpdb;
 
-		$product_id = $_POST['product_id'];
+		// ..... value from request
+		$value1 = $_POST['value1'];
 		
-		if(isset($product_id)) {
+		if(isset($value1)) {
 		
+		// we use openssl_random_pseudo_bytes in native PHP
+		// random string and numbers
 		$random_numbers_and_string = bin2hex(openssl_random_pseudo_bytes(16));
+		//random numbers
 		$random_numbers_only = bin2hex(md5(openssl_random_pseudo_bytes(16)));
 		
-		$layfotk_code = substr($random_numbers_only, 0, 10);
+		// random code
+		$rand_code = substr($random_numbers_only, 0, 10);
 		
-		if($wpdb->insert('layfotk_codes',array(
-			'product_id' => $product_id,
-			'layfotk_code' => $layfotk_code,
-			'req_date' => date('Y-m-d H:i:s',time())
+		// insert number in databse id desired
+		if($wpdb->insert('table_name',array(
+			'col1_name' => $value1,
+			'rand_code' => $rand_code 
 		))===FALSE){
 
-			echo "حدث خطأ .. الرجاء المحاولة مرة أخرى";
+			echo "Error Occured";
 
 		}
 		else {
-			echo "<h4 class='bg-success'> رقم الخدمة الخاص بك: <br />" . $layfotk_code . "</h4>";
+			echo "Your random code: " . $rand_code;
 
 		}
 	}
