@@ -2,7 +2,7 @@
 
 This is wordpress plugin to generate secure random code, with long length if needed
 
-<h3>Note:</h3>
+<h3>Notice:</h3>
 	<ul>
 		<li>to use this plugin, add the javascript within your page.</li>
 	</ul>
