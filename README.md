@@ -2,6 +2,11 @@
 
 This is wordpress plugin to generate secure random code, with long length if needed
 
+<h3>Note:</h3>
+	<ul>
+		<li>to use this plugin, add the javascript within your page.</li>
+	</ul>
+
 <h3>How to use it</h3>
 <ul>
   <li>Download it as .zip format</li>
