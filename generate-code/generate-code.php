@@ -11,7 +11,7 @@
 
 
 // put this line in html form
-// <input type="hidden" name="bk-ajax-nonce" id="bk-ajax-nonce" value="<?php echo wp_create_nonce( 'bk-ajax-nonce' ); closePHPCode"
+// <input type="hidden" name="bk-ajax-nonce" id="bk-ajax-nonce" value="<?php echo wp_create_nonce( 'bk-ajax-nonce' ); closePHPCode">
 
 function wp_generate_random_code(){
 
@@ -62,4 +62,4 @@ function wp_generate_random_code(){
 }
 
 add_action('wp_ajax_wp_generate_random_code', 'wp_generate_random_code');
-add_action('wp_ajax_nopriv_wp_generate_random_code', 'wp_generate_random_code'); // not really needed
+add_action('wp_ajax_nopriv_wp_generate_random_code', 'wp_generate_random_code'); // if ajax is going to execute through the none logged users.
