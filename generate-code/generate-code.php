@@ -8,10 +8,10 @@
  * Author URI: http://github.com/manee1982
  * License: GPL2
  */
- 
 
-//	Adding ajax functionality to generate 
-//	layfotk codes
+
+// put this line in html form
+// <input type="hidden" name="bk-ajax-nonce" id="bk-ajax-nonce" value="<?php echo wp_create_nonce( 'bk-ajax-nonce' ); closePHPCode"
 
 function wp_generate_random_code(){
 
@@ -19,8 +19,9 @@ function wp_generate_random_code(){
 
 		// ..... value from request
 		$value1 = $_POST['value1'];
+		$nounce = $_POST['security'];
 		
-		if(isset($value1)) {
+		if(! wp_verify_nonce( $nonce, 'wp_generate_random_code' ) ) {
 		
 		// we use openssl_random_pseudo_bytes in native PHP
 		// random string and numbers
@@ -31,19 +32,30 @@ function wp_generate_random_code(){
 		// random code
 		$rand_code = substr($random_numbers_only, 0, 10);
 		
-		// insert number in databse id desired
-		if($wpdb->insert('table_name',array(
-			'col1_name' => $value1,
-			'rand_code' => $rand_code 
-		))===FALSE){
+		// check the wp nounce is set or not
+		if ( isset($value1) ) {
 
-			echo "Error Occured";
+			 die( 'Security check error occured' ); 
 
-		}
+		} 
 		else {
-			echo "Your random code: " . $rand_code;
+			 // insert number in databse id desired
+			if($wpdb->insert('table_name',array(
+				'col1_name' => $value1,
+				'rand_code' => $rand_code 
+			))===FALSE){
 
+				echo "Error Occured";
+
+			}
+			else {
+				echo "Your random code: " . $rand_code;
+
+			}
 		}
+	
+		
+		
 	}
 	
 	die();
